@@ -7,7 +7,7 @@ TODO
 '''
 
 #libs
-import openpyxl
+import openpyxl 
 from utilities import *
 from copier import *
 
@@ -33,7 +33,7 @@ headers_and_locations = {
     'Weight**': 15, #Price
 }
 #TRANSFER LOOP==================================================================================================================
-#clear template using 
+#clear template if overwrite is set
 init(target_sheet, reset_start_row, overwrite)
 #sheet loop
 for sheet_name in source_wb.sheetnames:
@@ -48,7 +48,7 @@ for sheet_name in source_wb.sheetnames:
     for header, target_column in headers_and_locations.items():
         print(f"Copying '{header}' to column '{target_column}' starting at row {next_empty_row}") #debug
         copier(source_sheet, target_sheet, header, target_column, next_empty_row, rows_to_search, enable_column, disable_columns) #copy function from copier.py
-    
+
 #save and report success
 target_wb.save(r'Gojo Converter/Square_Bulk_Upload_Template.xlsx')
 print("Transfer complete.")
