@@ -19,9 +19,10 @@ def copier(source_sheet, target_sheet, header_name, target_column, start_row, ro
         #skip to next iteration for items with no name
         if ref_value is None:
             continue  
-
+        
+        #if weight, convert
         if header_name == 'Weight**':
-            value = convert_weight(value)
+            value = convert_weight(value) #convert_weight function from utilities.py
 
         #only write one off fields when pos description is being copied
         if header_name == 'POS Description':
