@@ -18,10 +18,7 @@ def copier(source_sheet, target_sheet, header_name, target_column, start_row, ro
             value = cell.value
         #convert if weight
         if header_name == 'Weight**':
-            print(header_name)
-            print(value)
             value = convert_weight(value)
-            print(row)
 
         #write value
         if value is not None:
