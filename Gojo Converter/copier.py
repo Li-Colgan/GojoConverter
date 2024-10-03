@@ -1,5 +1,4 @@
 from utilities import find_header, convert_weight
-import openpyxl
 
 def copier(source_sheet, target_sheet, header_name, target_column, start_row, rows_to_search, enable_column, disable_columns):
     #use pos description as ref as only one with somehting in every row
@@ -20,6 +19,9 @@ def copier(source_sheet, target_sheet, header_name, target_column, start_row, ro
         #skip to next iteration for items with no name
         if ref_value is None:
             continue  
+
+        if header_name == 'Weight**':
+            value = convert_weight(value)
 
         #only write one off fields when pos description is being copied
         if header_name == 'POS Description':
