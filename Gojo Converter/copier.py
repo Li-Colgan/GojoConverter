@@ -23,7 +23,7 @@ def copier(source_sheet, target_sheet, header_name, target_column, start_row, ro
 
         #only write one off fields when pos description is being copied
         if header_name == 'POS Description':
-            target_sheet.cell(row=target_row, column=enable_column, value='Y') #enable at location
+            target_sheet.cell(row=target_row, column=enable_column, value='Y') #enable at location matching sheet name
             for disable_column in disable_columns:
                 target_sheet.cell(row=target_row, column=disable_column, value='N') #disable at locations not matching sheet name
             

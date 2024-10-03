@@ -1,7 +1,9 @@
 '''
 TODO
--online visibility, delivery hardcoded, auto add to bill, item type hardcoded
+-online visibility, delivery hardcoded, auto add to bill, item type currently hardcoded, would be good to make them configurable
 -test on oneworld square acc
+-likely very unforgiving if square location names don't exactly match sheet names
+-account for duplicate locations (option for enabling for all or giving name for a sheet directly?)
 '''
 
 #libs
@@ -37,10 +39,9 @@ init(target_sheet, reset_start_row, overwrite)
 for sheet_name in source_wb.sheetnames:
     source_sheet = source_wb[sheet_name] 
     print(f"Processing sheet: {sheet_name}") #debug
-    next_empty_row = find_next_empty_row(target_sheet, reset_start_row) 
+    next_empty_row = find_next_empty_row(target_sheet, reset_start_row) #copy to next empty row for each sheet
 
     enable_column = find_enable_column(target_sheet, source_sheet.title, rows_to_search)
-    print(enable_column)
     disable_columns = find_disable_columns(target_sheet, source_sheet.title, rows_to_search)
 
     #header loop
