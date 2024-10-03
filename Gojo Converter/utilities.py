@@ -53,3 +53,27 @@ def find_next_empty_row(ws, start_row=1):
     for row in range(start_row, ws.max_row + 2):
         if all(cell.value is None for cell in ws[row]):
             return row
+
+#find enable column using the sheet title
+def find_enable_column(target_sheet, source_sheet_title, rows_to_search):
+    for row in range(1, rows_to_search + 1): 
+        for col in range(1, target_sheet.max_column + 1):
+            cell_value = target_sheet.cell(row=row, column=col).value
+            #just in case
+            if cell_value is not None and source_sheet_title in str(cell_value):
+                return col  
+    return None
+
+
+#find disable columns
+def find_disable_columns(target_sheet, source_sheet_title, rows_to_search):
+    disable_columns = []
+    for row in range(1, rows_to_search + 1): 
+        for col in range(1, target_sheet.max_column + 1):
+            cell_value = target_sheet.cell(row=row, column=col).value
+            #dont include stock
+            if isinstance(cell_value, str) and 'Enabled' in cell_value and source_sheet_title not in cell_value and 'Stock' not in cell_value:
+                disable_columns.append(col)
+    return disable_columns
+
+

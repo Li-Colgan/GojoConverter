@@ -1,3 +1,9 @@
+'''
+TODO
+-online visibility, delivery hardcoded, auto add to bill, item type hardcoded
+-test on oneworld square acc
+'''
+
 #libs
 import openpyxl
 from utilities import *
@@ -32,11 +38,15 @@ for sheet_name in source_wb.sheetnames:
     source_sheet = source_wb[sheet_name] 
     print(f"Processing sheet: {sheet_name}") #debug
     next_empty_row = find_next_empty_row(target_sheet, reset_start_row) 
+
+    enable_column = find_enable_column(target_sheet, source_sheet.title, rows_to_search)
+    print(enable_column)
+    disable_columns = find_disable_columns(target_sheet, source_sheet.title, rows_to_search)
+
     #header loop
     for header, target_column in headers_and_locations.items():
         print(f"Copying '{header}' to column '{target_column}' starting at row {next_empty_row}") #debug
-        copier(source_sheet, target_sheet, header, target_column, next_empty_row, rows_to_search) #copy function from copier.py
-
+        copier(source_sheet, target_sheet, header, target_column, next_empty_row, rows_to_search, enable_column, disable_columns) #copy function from copier.py
     
 #save and report success
 target_wb.save(r'Gojo Converter/Square_Bulk_Upload_Template.xlsx')
