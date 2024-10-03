@@ -1,25 +1,28 @@
 import re
 # removes non-numeric characters and converts to kg or litres
 def convert_weight(weight_str):
+    #handle empty cell
     if weight_str is None:
         return None
         
-    # Convert the weight to a string if it’s not already one
+    #handle not string
     if not isinstance(weight_str, str):
         weight_str = str(weight_str)
-        
+    
+    #strip non-numeric characters and convert
     try:
         weight_str = re.sub(r'[^0-9.]', '', weight_str).strip()  
         if weight_str:  
             weight_grams = float(weight_str)  
-            return weight_grams / 1000  # Convert grams to kg
+            return weight_grams / 1000 
+        #no number err
         else:
-            print(f"No valid numeric value found in weight '{weight_str}'. Skipping.")
+            print(f"No valid number found in weight '{weight_str}'.")
             return None  
+    #debug
     except ValueError:
-        print(f"Invalid weight value '{weight_str}' for conversion. Skipping.")
+        print(f"Invalid weight value '{weight_str}' for conversion.")
         return None  
-
 
 #clear square template
 def init(target_sheet, reset_start_row, overwrite):
@@ -27,9 +30,9 @@ def init(target_sheet, reset_start_row, overwrite):
         for row in target_sheet.iter_rows(min_row=reset_start_row):
             for cell in row:
                 cell.value = None
-        print("Contents of the target sheet have been cleared.")
+        print("Overwriting") #debug
     else:
-        print("Contents of the target sheet will not be cleared. Appending data instead.")
+        print("Appending") #debug
 
 #find header
 def find_header(source_sheet, rows_to_search, header):

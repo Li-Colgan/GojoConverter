@@ -1,4 +1,4 @@
-# libs
+#libs
 import openpyxl
 from utilities import *
 from copier import *
@@ -18,11 +18,11 @@ overwrite = 1 #set to 1 to overwrite contents of square template, set to 0 to ad
 
 #gojo header and corresponding column in square template
 headers_and_locations = {
-    'Item Description (as advertised on your menu board)': 7,  
-    'POS Description': 3,
-    'Category': 8,
-    'Price*': 20,
-    'Weight**': 15,
+    'Item Description (as advertised on your menu board)': 7, #Description
+    'POS Description': 3, #Item Name
+    'Category': 8, #Reporting Category
+    'Price*': 20, #Weight (kg)
+    'Weight**': 15, #Price
 }
 #TRANSFER LOOP==================================================================================================================
 #clear template using 
