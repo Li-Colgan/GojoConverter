@@ -9,7 +9,7 @@ def copier(source_sheet, target_sheet, header_name, target_column, start_row, ro
     target_row = start_row
     ref_row += 1  
 
-    #iterate over current column and reference column to preserve row alignment
+    #iterate over current column and reference column to skip any rows with empty name cells. zip helps account for empty cells apparently
     for ref_cell, cell in zip(source_sheet.iter_rows(min_row=ref_row, min_col=ref_column, max_col=ref_column), 
                               source_sheet.iter_rows(min_row=source_row, min_col=header_column, max_col=header_column)):
 
