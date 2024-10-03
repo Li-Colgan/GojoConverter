@@ -41,7 +41,7 @@ for sheet_name in source_wb.sheetnames:
     print(f"Processing sheet: {sheet_name}") #debug
     next_empty_row = find_next_empty_row(target_sheet, reset_start_row) #copy to next empty row for each sheet
 
-    enable_column = find_enable_column(target_sheet, source_sheet.title, rows_to_search)
+    enable_column = find_enable_column(target_sheet, source_sheet.title, rows_to_search) #utilities.py
     disable_columns = find_disable_columns(target_sheet, source_sheet.title, rows_to_search)
 
     #header loop
